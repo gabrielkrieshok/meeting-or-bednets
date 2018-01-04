@@ -5,19 +5,18 @@
 
 <div class="hero-body">
   <div class="container has-text-centered">
-    
-    <img src="./assets/mosquito.png" width="100"/>
-    <h1 id="heading" class="title is-size-1 is-spaced">
-      Mosquitos vs. Meetings
-    </h1>
-    <h1 id="subheading" class="subtitle is-size-4">
-      How many bednets could be bought in lieu of the resources required for your meeting?
-    </h1>
+  <div class="column is-8 is-offset-2 has-text-centered">
+    <img src="./assets/mosquito.png" width="150"/>
+    <h1 id="heading" class="title is-size-1 is-spaced">Mosquitos vs. Meetings</h1>
+    <h1 id="subheading" class="subtitle is-size-4">How many bednets could be bought in lieu of the resources required for your meeting?</h1>
+    <h1 id="subheading" class="subtitle is-size-6"><em>Creator's Note: I created this simple web app after sitting in one too many meetings that really should have been just been an email in the first place. Just a way to remind us that our time and resources should always be used efficiently and effectively. ☺ </em></h1>
+  </div>
   </div>
 </div>
 <div id="band">
   <div class="column is-8 is-offset-2 has-text-centered">
-    <h1 class="subtitle is-size-4 has-text-white">Every two minutes, a child dies from malaria - a deadly, yet preventable disease.<br />One great way to help is to support the <a class="has-text-white" href="https://nothingbutnets.net/">UN's 'Nothing But Nets' Campaign</a></h1>
+    <h1 class="subtitle is-size-4 has-text-white">Every two minutes, a child dies from malaria - a deadly, yet preventable disease.</h1>
+    <h1 class="subtitle is-size-4 has-text-white">One great way to help is to support the <a class="has-text-white" href="https://nothingbutnets.net/">UN's 'Nothing But Nets' Campaign.</a></h1>
   </div>
 </div>
 
@@ -274,7 +273,7 @@ p {
 }
 
 #heading {
-  margin-top: 1em;
+  margin-top: .5em;
 }
 
 #subheading {
@@ -288,6 +287,7 @@ p {
 #band {
   background-color: $light-invert;
   margin-bottom: 1em;
+  padding: 1em 1em;
 }
 
 .slide-fade-enter-active {
