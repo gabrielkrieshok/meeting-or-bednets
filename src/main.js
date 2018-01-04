@@ -4,11 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import Buefy from 'buefy'
 import Vuelidate from 'vuelidate'
+import SocialSharing from 'vue-social-sharing'
 
 Vue.config.productionTip = false
 
+Vue.use(SocialSharing)
 Vue.use(Vuelidate)
-
 Vue.use(Buefy, {
   defaultIconPack: 'fa'
 })

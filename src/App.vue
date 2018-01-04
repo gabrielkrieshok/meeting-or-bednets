@@ -72,6 +72,7 @@
       <div v-for="mediumNet in bednetImagesMedium" :key="mediumNet+'medium'" v-if="bednetImagesTotal > 0" class="bednet medium"><span class="centered title is-size-3">100</span></div>
       <div v-for="smallNet in bednetImagesSmall" :key="smallNet+'small'" v-if="bednetImagesTotal > 0" class="bednet small"></div>
     </transition-group>
+
   </div>
 </div>
   <div id="band">
@@ -79,11 +80,47 @@
     <h1 class="subtitle is-size-4 has-text-white"><strong class="has-text-white"> The Formula: </strong>{{ attendees }} attendees · {{ hours }} hours · ( {{ displayValue }} yearly salary / 2,087 billable hours<sup>1</sup>) = ${{ bednetsMoney }}(USD) = {{ bednets }} Bednets<sup>2</sup></h1>
   </div>
 
+
   </div>
 
 <div class="hero-foot">
+    <div class="container">
+    <div class="column is-6 is-offset-3 has-text-centered">
+    <h1 id="subheading" class="subtitle is-size-3">Share on social media with how many bednets you could have bought!</h1>
+
+        <social-sharing url="https://gabrielkrieshok.github.io/mosquitos-vs-meetings/"
+                      :title="socialMessage"
+                      :description="socialMessage"
+                      :quote="socialMessage"
+                      hashtags="#malaria #meetings #bednets"
+                      twitter-user="gabrielkrieshok"
+                      v-cloak inline-template>
+        <span>
+          <ul>
+            <li>
+              <network network="email" id="email">
+                <i class="fa fa-fw fa-envelope  fa-2x"></i>
+              </network>
+            </li>
+            <li>
+              <network network="facebook" id="facebook">
+                <i class="fa fa-fw fa-facebook  fa-2x"></i>
+              </network>
+            </li>
+            <li>
+              <network network="twitter" id="twitter">
+                <i class="fa fa-fw fa-twitter fa-2x"></i>
+              </network>
+            </li>
+          </ul>
+        </span>
+      </social-sharing>
+    </div>
+    </div>
   <div class="container">
+
     <div class="column is-6 is-offset-3">
+
     <p><strong>1) </strong><a href="https://www.opm.gov/policy-data-oversight/pay-leave/pay-administration/fact-sheets/computing-hourly-rates-of-pay-using-the-2087-hour-divisor/">According to OPM</a>, 2,087 as the average number of work hours in a calendar year reasonably accommodates the year-to-year fluctuations in work hours, thus salary/2,087 for hourly salary.</p>
     <p><strong>2) </strong>There is a lot of variability in bednet costs -- accounting for manufacturing, pre-treated, and shipping costs, a <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3348006/">generally recognized figure of $2.50 per bednet</a> is used.</p>
   </div>
@@ -116,13 +153,6 @@ export default {
       isInputActive: false
     }
   },
-  // watch: {
-  //   salary2: function (newValue) {
-  //     const result = newValue.replace(/\D/g, '')
-  //       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  //     Vue.nextTick(() => this.salary2 = result)
-  //   }
-  // },
   computed: {
     displayValue: {
       get: function () {
@@ -145,16 +175,11 @@ export default {
           newValue = 0
         }
         this.salary = newValue
-        // Note: we cannot set this.salary as it is a "prop". It needs to be passed to parent component
-        // $emit the event so that parent component gets it
-        // this.$emit('input', newValue)
       }
     },
     bednets: function () {
       // cost of bednets: $2.50
       // According to OPM, 2,087 as the average number of work hours in a calendar year reasonably accommodates the year-to-year fluctuations in work hours, thus salary/2,087 for hourly salary.
-      // var a = this.cookiesInput % 18
-      // return a
       const bednetsCalc = ((this.attendees * this.hours) * ((this.salary) / 2087)) / 2.50
       return bednetsCalc.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
@@ -162,11 +187,6 @@ export default {
       const bednetsMoney = ((this.attendees * this.hours) * ((this.salary) / 2087))
       return bednetsMoney.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
-    // bednetImages: function () {
-    //   const bednetsCalc = Math.floor(((this.attendees * this.hours) * ((this.salary * 10000) / 2087)) / 2.50)
-    //   console.log('bednetImages: ' + this.bednetImages)
-    //   return bednetsCalc
-    // }
     bednetImagesTotal: function () {
       return Math.floor(((this.attendees * this.hours) * ((this.salary) / 2087)) / 2.50)
     },
@@ -178,10 +198,10 @@ export default {
     },
     bednetImagesSmall: function () {
       return Math.floor(this.bednetImagesTotal % 100)
+    },
+    socialMessage: function () {
+      return 'We could have bought ' + this.bednets.toString() + ' anti-malaria bednets instead of having this meeting.'
     }
-    // numberDisplay: function (event) {
-    //   return bednetsMoney.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    // }
   },
   validations: {
     attendees: {
@@ -211,14 +231,6 @@ export default {
         this.hours = 0
       }
     }
-    // handleSalary: function (event) {
-    //   var value = Number(event.target.value)
-    //   if (value > 999999) {
-    //     this.salary = 999999
-    //   } else if (value < 0 || Number.isNaN(value)) {
-    //     value = 0
-    //   }
-    // }
   }
 }
 </script>
@@ -279,10 +291,6 @@ p {
 #subheading {
   margin-top: 1em;
 }
-
-/*#inputs {
-  margin-top: 50px;
-}*/
 
 #band {
   background-color: $light-invert;
@@ -357,6 +365,17 @@ p {
   margin-bottom: 20px;
 }
 
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+      ul i.fa {
+        margin-right: 5px;
+      }
+
+      li {
+        display: inline;
+      }
 
 
 </style>
