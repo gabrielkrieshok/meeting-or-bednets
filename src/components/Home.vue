@@ -276,6 +276,7 @@ html {
 }
 
 a {
+  color: #167df0;
   text-decoration: none;
   border-bottom: 2px dashed $info;
 }

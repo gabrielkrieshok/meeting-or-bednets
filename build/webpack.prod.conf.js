@@ -104,11 +104,16 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({
-      cacheId: 'mos3',
+      cacheId: 'mosquitoes-vs-meetings',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css,svg,png}'],
       minify: true,
       stripPrefix: 'dist/'
+      // runtimeCaching: [
+      // {
+      //   urlPattern: /^https:\/\/github\.gabrielkrieshok\.io\//,
+      //   handler: 'cacheFirst'
+      // }]
     })
   ]
 })
