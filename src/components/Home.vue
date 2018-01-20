@@ -9,7 +9,6 @@
     <img src="../assets/mosquito.png" width="150"/>
     <h1 id="heading" class="title is-size-1 is-spaced">Mosquitoes vs. Meetings</h1>
     <h1 id="subheading" class="subtitle is-size-4">How many bednets could be bought in lieu of the resources required for your meeting?</h1>
-    <h1 id="subheading" class="subtitle is-size-6"><em>Creator's Note: I created this simple web app after sitting in one too many meetings that really should have been just been an email in the first place. Just a way to remind us that our time and resources should always be used efficiently and effectively.</em> ☺</h1>
   </div>
   </div>
 </div>
@@ -64,6 +63,7 @@
       </div>
     </div>
     <hr />
+    <h1 class="title is-size-1">{{ bednets }} Bednets</h1>
   </div>
 
   <div class="column is-8 is-offset-2">
@@ -86,6 +86,8 @@
 <div class="hero-foot">
     <div class="container">
     <div class="column is-6 is-offset-3 has-text-centered">
+          <h1 id="subheading" class="subtitle is-size-6"><em>Creator's Note: I created this simple web app after sitting in one too many meetings that really should have been just been an email in the first place. Just a way to remind us that our time and resources should always be used efficiently and effectively.</em> ☺</h1>
+
     <h1 id="subheading" class="subtitle is-size-3">Share on social media with how many bednets you could have bought!</h1>
 
         <social-sharing url="https://gabrielkrieshok.github.io/mosquitoes-vs-meetings/"
