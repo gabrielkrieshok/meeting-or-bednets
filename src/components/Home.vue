@@ -7,15 +7,9 @@
   <div class="container has-text-centered">
   <div class="column is-8 is-offset-2 has-text-centered">
     <img src="../assets/mosquito.png" width="150"/>
-    <h1 id="heading" class="title is-size-1 is-spaced">Mosquitoes vs. Meetings</h1>
-    <h1 id="subheading" class="subtitle is-size-4">How many bednets could be bought in lieu of the resources required for your meeting?</h1>
+    <h1 id="heading" class="title is-size-1 is-spaced">Meeting or Bednets</h1>
+    <h1 id="subheading" class="subtitle is-size-4">How many anti-malaria bednets could be bought in lieu of the resources required for this particular meeting? Let's do the math...</h1>
   </div>
-  </div>
-</div>
-<div id="band">
-  <div class="column is-8 is-offset-2 has-text-centered">
-    <h1 class="subtitle is-size-4 has-text-white">Every two minutes, a child dies from malaria - a deadly, yet preventable disease.</h1>
-    <h1 class="subtitle is-size-4 has-text-white">One great way to help is to support the <a class="has-text-white" href="https://nothingbutnets.net/">UN's 'Nothing But Nets' Campaign.</a></h1>
   </div>
 </div>
 
@@ -27,17 +21,6 @@
         
         <div class="column is-1"></div>
 
-        <div class="form-group column" v-bind:class="{ 'form-group--error': $v.attendees.$error }">
-          <input
-          class="input is-medium form__input"
-          v-model.trim="attendees"
-          type="number"
-          @input="handleAttendees"
-          placeholder="# meeting attendees">
-          <p class="form-group__message">Enter the number of attendees</p>
-          <p class="form-group__message" v-if="!$v.attendees.between">Must be no more than {{$v.attendees.$params.between.max}}</p>
-        </div>
-
         <div class="form-group column" v-bind:class="{ 'form-group--error': $v.hours.$error }">
           <input
           class="input is-medium form__input"
@@ -45,7 +28,18 @@
           type="number"
           @input="handleHours"
           placeholder="duration">
-          <span class="form-group__message">Enter the number of hours of the meeting/event</span>
+          <span class="form-group__message">Duration of the meeting (in hours)</span>
+        </div>
+
+        <div class="form-group column" v-bind:class="{ 'form-group--error': $v.attendees.$error }">
+          <input
+          class="input is-medium form__input"
+          v-model.trim="attendees"
+          type="number"
+          @input="handleAttendees"
+          placeholder="# meeting attendees">
+          <p class="form-group__message">Number of attendees</p>
+          <p class="form-group__message" v-if="!$v.attendees.between">Must be no more than {{$v.attendees.$params.between.max}}</p>
         </div>
 
         <div class="form-group column" v-bind:class="{ 'form-group--error': $v.salary.$error }">
@@ -55,7 +49,7 @@
           @blur="isInputActive = false"
           @focus="isInputActive = true"
           placeholder="salary">
-          <span class="form-group__message">Enter the estimated average yearly salary of the attendees</span>
+          <span class="form-group__message">Average salary of the attendees (ballpark)</span>
         </div>
         
         <div class="column is-1"></div>
@@ -63,32 +57,32 @@
       </div>
     </div>
     <hr />
-    <h1 class="title is-size-1">{{ bednets }} Bednets</h1>
+    <h1 class="title is-size-3">This meeting could buy the equivalent of <span class="bednetnumber">{{ bednets }}</span> bednets</h1>
   </div>
 
-  <div class="column is-8 is-offset-2">
+  <div class="column is-6 is-offset-3">
     <transition-group name="slide-fade">
-      <div v-for="largeNet in bednetImagesLarge" :key="largeNet+'large'" v-if="bednetImagesTotal > 0" class="bednet large"><span class="centered title is-size-1">1,000</span></div>
-      <div v-for="mediumNet in bednetImagesMedium" :key="mediumNet+'medium'" v-if="bednetImagesTotal > 0" class="bednet medium"><span class="centered title is-size-3">100</span></div>
-      <div v-for="smallNet in bednetImagesSmall" :key="smallNet+'small'" v-if="bednetImagesTotal > 0" class="bednet small"></div>
+      <div v-for="largeNet in bednetImagesLarge" :key="largeNet+'large'" v-if="bednetImagesLarge > 0" class="bednet large"><span class="centered title is-size-1">1,000</span></div>
     </transition-group>
+<br />
+    <transition-group name="slide-fade">
+      <div v-for="mediumNet in bednetImagesMedium" :key="mediumNet+'medium'" v-if="bednetImagesMedium > 0" class="bednet medium"><span class="centered title is-size-3">100</span></div>
+    </transition-group>
+<br />
+    <transition-group name="slide-fade">
+      <div v-for="smallNet in bednetImagesSmall" :key="smallNet+'small'" v-if="bednetImagesSmall > 0" class="bednet small"></div>
+    </transition-group>
+
+
+
+
+      
 
   </div>
 </div>
-  <div id="band">
-      <div class="column is-8 is-offset-2 has-text-centered">
-    <h1 class="subtitle is-size-4 has-text-white"><strong class="has-text-white"> The Formula: </strong>{{ attendees }} attendees · {{ hours }} hours · ( {{ displayValue }} yearly salary / 2,087 billable hours<sup>1</sup>) = ${{ bednetsMoney }}(USD) = {{ bednets }} Bednets<sup>2</sup></h1>
-  </div>
 
-
-  </div>
-
-<div class="hero-foot">
     <div class="container">
     <div class="column is-6 is-offset-3 has-text-centered">
-          <h1 id="subheading" class="subtitle is-size-6"><em>Creator's Note: I created this simple web app after sitting in one too many meetings that really should have been just been an email in the first place. Just a way to remind us that our time and resources should always be used efficiently and effectively.</em> ☺</h1>
-
-    <h1 id="subheading" class="subtitle is-size-3">Share on social media with how many bednets you could have bought!</h1>
 
         <social-sharing url="https://gabrielkrieshok.github.io/mosquitoes-vs-meetings/"
                       :title="socialMessage"
@@ -119,10 +113,21 @@
       </social-sharing>
     </div>
     </div>
+
+<div id="band">
+  <div class="column is-8 is-offset-2 has-text-centered">
+    <h1 class="subtitle is-size-4 has-text-white">Every two minutes, a child dies from malaria - a deadly, yet preventable disease.</h1>
+    <h1 class="subtitle is-size-4 has-text-white">One great way to help is to support the <a class="has-text-white" href="https://nothingbutnets.net/">UN's 'Nothing But Nets' Campaign.</a></h1>
+  </div>
+</div>
+
+<div class="hero-foot">
+
   <div class="container">
 
     <div class="column is-6 is-offset-3">
 
+    <p><strong>The Formula: </strong>{{ attendees }} attendees · {{ hours }} hours · ( {{ displayValue }} yearly salary / 2,087 billable hours<sup>1</sup>) = ${{ bednetsMoney }}(USD) = {{ bednets }} Bednets<sup>2</sup>
     <p><strong>1) </strong><a href="https://www.opm.gov/policy-data-oversight/pay-leave/pay-administration/fact-sheets/computing-hourly-rates-of-pay-using-the-2087-hour-divisor/">According to OPM</a>, 2,087 as the average number of work hours in a calendar year reasonably accommodates the year-to-year fluctuations in work hours, thus salary/2,087 for hourly salary.</p>
     <p><strong>2) </strong>There is a lot of variability in bednet costs -- accounting for manufacturing, pre-treated, and shipping costs, a <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3348006/">generally recognized figure of $2.50 per bednet</a> is used.</p>
   </div>
@@ -147,9 +152,9 @@ export default {
   name: 'app',
   data () {
     return {
-      attendees: 10,
-      hours: 10,
-      salary: 100000,
+      attendees: 5,
+      hours: 1,
+      salary: 60000,
       salaryDisplay: null,
       bednetImages: null,
       isInputActive: false
@@ -247,8 +252,7 @@ export default {
 // Set your colors
 $primary: #f0f0f0;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
+$info: #90b9e2;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -261,8 +265,10 @@ $colors: (
     "success": ($success, $success-invert),
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
 );
+
+
+
 
 // Links
 $link: $primary;
@@ -278,13 +284,25 @@ html {
 }
 
 a {
-  color: #167df0;
+  color: #90b9e2;
   text-decoration: none;
-  border-bottom: 2px dashed $info;
+  border-bottom: 2px dashed #90b9e2;
 }
 
 p {
   margin-bottom: 1.2em;
+}
+
+.hero-body {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.bednetnumber {
+  color: #b3363c;
+  font-size: 1.1em;
+  margin-top: -.5em;
+  margin-right: auto;
 }
 
 #heading {
@@ -314,18 +332,21 @@ p {
 }
 
 .large {
-  width: 200px;
-  height: 200px;
+  width: 800px;
+  height: 800px;
+  display: block;
 }
 
 .medium {
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
+  display: inline-block
 }
 
 .small {
   width: 50px;
   height: 50px;
+  display: inline-block
 }
 
 .small.bednet:after {
@@ -333,8 +354,8 @@ p {
 }
 
 .bednet {
-  display: inline-block;
   position: relative;
+  margin: 0 auto;
   background-size: contain;
   background-repeat: no-repeat;
 }
