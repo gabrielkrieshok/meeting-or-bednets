@@ -99,7 +99,7 @@
 
     <div class="column is-6 is-offset-3">
 
-    <p><strong>The Formula: </strong>{{ attendees }} attendees · {{ hours }} hours · ( {{ displayValue }} yearly salary / 2,087 billable hours<sup>1</sup>) = ${{ bednetsMoney }}(USD) = {{ bednets }} Bednets<sup>2</sup>
+    <p><strong>The Formula: </strong>{{ attendees }} attendees · {{ hours }} hours · ( {{ displayValue }} yearly salary / 2,087 billable hours<sup>1</sup>) = ${{ bednetsMoney }}(USD) = {{ bednets }} Bednets<sup>2</sup></p>
     <p><strong>1) </strong><a href="https://www.opm.gov/policy-data-oversight/pay-leave/pay-administration/fact-sheets/computing-hourly-rates-of-pay-using-the-2087-hour-divisor/">According to OPM</a>, 2,087 as the average number of work hours in a calendar year reasonably accommodates the year-to-year fluctuations in work hours, thus salary/2,087 for hourly salary.</p>
     <p><strong>2) </strong>There is a lot of variability in bednet costs -- accounting for manufacturing, pre-treated, and shipping costs, a <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3348006/">generally recognized figure of $2.50 per bednet</a> is used.</p>
   </div>
@@ -118,7 +118,6 @@
 </template>
 
 <script>
-import { between } from 'vuelidate/lib/validators' // required, minLength
 
 export default {
   name: 'app',
@@ -180,17 +179,6 @@ export default {
     },
     socialMessage: function () {
       return 'We could have bought ' + this.bednets.toString() + ' anti-malaria bednets instead of having this meeting.'
-    }
-  },
-  validations: {
-    attendees: {
-      between: between(0, 100)
-    },
-    hours: {
-      between: between(0, 99)
-    },
-    salary: {
-      between: between(0, 9999999)
     }
   },
   methods: {

@@ -1,17 +1,10 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App'
 import Buefy from 'buefy'
-import Vuelidate from 'vuelidate'
-import VueAnalytics from 'vue-analytics';
 
-
-Vue.use(Vuelidate)
-
-Vue.use(VueAnalytics, {
-  id: 'UA-111965343-1'
-})
+let Vue=createApp()
 
 Vue.use(Buefy, {
   defaultIconPack: 'fa'
